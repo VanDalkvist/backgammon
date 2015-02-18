@@ -1,0 +1,18 @@
+﻿1. Dicer:
+Waiting for dicer end of move.
+
+2. Demo:
+dicer and dicer game.
+
+// TODO: Verify english.
+
+// TODO: to add verifier for home.
+
+// TODO: to create statistics for same users.
+
+// TODO: to create general statictics.
+
+// TODO: to add dynamic initialization start position.
+
+locked property for field.
+

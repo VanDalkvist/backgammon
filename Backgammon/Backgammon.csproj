@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{03CFD1FF-5C2E-4137-AD0D-C75CF408B050}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Backgammon</RootNamespace>
+    <AssemblyName>Backgammon</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\NLog2\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\NUnit-2.6.0\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\SQLite.NET4.0\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Cells\Cell.cs" />
+    <Compile Include="Core\Counters\Counter.cs" />
+    <Compile Include="Drawing\DrawingCounterArgs.cs" />
+    <Compile Include="Core\Errors\ErrorProvider.cs" />
+    <Compile Include="Core\Fields\Field.cs" />
+    <Compile Include="Core\Cells\ICell.cs" />
+    <Compile Include="Drawing\DrawingCellArgs.cs" />
+    <Compile Include="Drawing\ICounterDrawer.cs" />
+    <Compile Include="Drawing\IDrawer.cs" />
+    <Compile Include="Drawing\IDrawing.cs" />
+    <Compile Include="Core\Counters\ICounter.cs" />
+    <Compile Include="Drawing\IDrawingArgs.cs" />
+    <Compile Include="Drawing\IGeneralDrawer.cs" />
+    <Compile Include="Drawing\Painting.cs" />
+    <Compile Include="Helper\ColorHelper.cs" />
+    <Compile Include="Helper\GeneralConstants.cs" />
+    <Compile Include="Helper\CellCounterHelper.cs" />
+    <Compile Include="Logic\Algorithms\IEvaluator.cs" />
+    <Compile Include="Logic\Algorithms\Solutions\ISolution.cs" />
+    <Compile Include="Logic\Commands\ICommand.cs" />
+    <Compile Include="Logic\Processing\Dice.cs" />
+    <Compile Include="Core\Cells\Side.cs" />
+    <Compile Include="Logic\Processing\PlayBehavior.cs" />
+    <Compile Include="Logic\Commands\CommandManager.cs" />
+    <Compile Include="Logic\Validation\MoveValidator.cs" />
+    <Compile Include="Logic\Validation\ValidatedArgs.cs" />
+    <Compile Include="Logic\Validation\ValidationHelper.cs" />
+    <Compile Include="Logic\Verification\FieldVerificator.cs" />
+    <Compile Include="Logic\Verification\VerificatedArgs.cs" />
+    <Compile Include="Logic\Verification\VerificationHelper.cs" />
+    <Compile Include="Logic\Databases\Management\DBManager.cs" />
+    <Compile Include="Logic\Databases\Management\UserManager.cs" />
+    <Compile Include="Logic\Processing\Game.cs" />
+    <Compile Include="Logic\Databases\Validation\DBValidator.cs" />
+    <Compile Include="Logic\Databases\DBHelper\DBConstants.cs" />
+    <Compile Include="Logic\Players\Bot.cs" />
+    <Compile Include="Logic\Players\IPlayer.cs" />
+    <Compile Include="Logic\Players\UserInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\CellTest.cs" />
+    <Compile Include="Tests\FieldTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Randomize\Randomize.csproj">
+      <Project>{D209A2B2-50FA-48FE-ABE6-953719EFE568}</Project>
+      <Name>Randomize</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Backgammon.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Backgammon.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ideas.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Serialization\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
